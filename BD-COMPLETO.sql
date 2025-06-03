@@ -484,7 +484,13 @@ BEGIN
     JOIN INSERTED i ON a.AnnouncID = i.AnnouncID;
 END;
 
-
+CREATE TRIGGER TR_BloquearInsercionesReservation
+ON RESERVATION
+INSTEAD OF INSERT
+AS
+BEGIN
+    RAISERROR('La funcionalidad de reservas está deshabilitada para esta urbanización.', 16, 1);
+END
 
 
 
